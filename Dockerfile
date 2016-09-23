@@ -20,15 +20,15 @@ ADD nginx.conf /etc/nginx/sites-available/default
 ADD webappmvc.conf /etc/supervisor/conf.d/webappmvc.conf
 
 WORKDIR /usr/local/src
-RUN DEBIAN_FRONTEND=noninteractive curl -sSL -o dotnet.tar.gz https://go.microsoft.com/fwlink/?LinkID=809130 \
+RUN DEBIAN_FRONTEND=noninteractive curl -sSL -o dotnet.tar.gz https://go.microsoft.com/fwlink/?LinkID=827530 \
 	&& mkdir -p /opt/dotnet \
 	&& tar zxf dotnet.tar.gz -C /opt/dotnet \
 	&& ln -s /opt/dotnet/dotnet /usr/local/bin
 
 # We need npm (and NodeJS) for bower
-RUN DEBIAN_FRONTEND=noninteractive wget https://nodejs.org/dist/v6.2.0/node-v6.2.0.tar.gz \
-	&& tar -xzvf node-v6.2.0.tar.gz && rm -f node-v6.2.0.tar.gz \
-	&& cd node-v6.2.0 \
+RUN DEBIAN_FRONTEND=noninteractive wget https://nodejs.org/dist/v6.6.0/node-v6.6.0.tar.gz \
+	&& tar -xzvf node-v6.6.0.tar.gz && rm -f node-v6.6.0.tar.gz \
+	&& cd node-v6.6.0 \
 	&& ./configure \
 	&& make -j $(cat /proc/cpuinfo | grep processor | wc -l)\
 	&& make install
